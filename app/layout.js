@@ -5,7 +5,7 @@ import './globals.css'
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
 const merriweather = Merriweather({ 
   subsets: ['latin'], 
-  weight: ['600'],
+  weight: ['700'],
   variable: '--font-merriweather' 
 })
 
