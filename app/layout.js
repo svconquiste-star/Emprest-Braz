@@ -12,13 +12,13 @@ const merriweather = Merriweather({
 export const metadata = {
   title: 'Empréstimo Imediato | Atendimento Creditop Braz',
   description: 'Crédito rápido e humano para quem precisa resolver as contas agora.',
-  themeColor: '#2149ff',
 }
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  themeColor: '#2149ff',
 }
 
 export default function RootLayout({ children }) {
