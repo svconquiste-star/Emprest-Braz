@@ -25,7 +25,7 @@ export default function Proof() {
           <h2 id="proof">Voz de quem já recebeu</h2>
         </div>
         <blockquote>
-          "Fiz o contato às 9h, às 11h já tinha resposta e a documentação sendo enviada. Tudo direto no WhatsApp e com total transparência."
+          &quot;Fiz o contato às 9h, às 11h já tinha resposta e a documentação sendo enviada. Tudo direto no WhatsApp e com total transparência.&quot;
           <footer>— Renata M., Contagem</footer>
         </blockquote>
       </div>
