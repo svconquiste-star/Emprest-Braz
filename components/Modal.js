@@ -1,64 +1,35 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useModal } from '@/context/ModalContext'
 
-export default function Modal() {
-  const { isOpen, closeModal } = useModal()
-
+export default function Modal({ onClose }) {
   useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('modal-open')
-    } else {
-      document.body.classList.remove('modal-open')
-    }
-
-    return () => {
-      document.body.classList.remove('modal-open')
-    }
-  }, [isOpen])
-
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape' && isOpen) {
-        closeModal()
-      }
-    }
-
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen, closeModal])
-
-  const handleBackdropClick = (e) => {
-    if (e.target.id === 'modal') {
-      closeModal()
-    }
-  }
+    document.body.classList.add('modal-open')
+    return () => document.body.classList.remove('modal-open')
+  }, [])
 
   return (
-    <div
-      id="modal"
-      className={`modal ${isOpen ? 'active' : ''}`}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modalTitle"
-      aria-describedby="modalMessage"
-      onClick={handleBackdropClick}
-    >
-      <div className="modal-box">
-        <h2 id="modalTitle">Aviso importante</h2>
-        <p id="modalMessage">
-          No Momento Não Estamos Atuando Na Cidade Selecionada, Mas Breve iremos chegar Na Sua Cidade
-        </p>
-        <div className="modal-actions">
-          <button
-            className="modal-btn"
-            type="button"
-            onClick={closeModal}
-          >
-            Entendi
-          </button>
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <h2>Fale com um Especialista</h2>
+          <button className="modal-close" onClick={onClose}>×</button>
         </div>
+        <form className="modal-form">
+          <div className="form-group">
+            <label>Nome</label>
+            <input type="text" placeholder="Seu nome" />
+          </div>
+          <div className="form-group">
+            <label>WhatsApp</label>
+            <input type="tel" placeholder="(11) 99999-9999" />
+          </div>
+          <div className="form-group">
+            <label>Mensagem</label>
+            <textarea placeholder="Conte-nos como podemos ajudar"></textarea>
+          </div>
+          <button type="submit" className="form-submit">Enviar</button>
+        </form>
       </div>
     </div>
   )

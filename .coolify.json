@@ -1,7 +1,0 @@
-{
-  "buildCommand": "npm run build",
-  "startCommand": "npm start",
-  "ports": [3000],
-  "baseDirectory": "/",
-  "publishDirectory": "/"
-}

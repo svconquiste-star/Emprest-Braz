@@ -1,46 +1,46 @@
-'use client'
-
-import { useState } from 'react'
-import CitySelector from './CitySelector'
-
-export default function Hero() {
+export default function Hero({ onContactClick }) {
   return (
-    <header className="hero" role="banner">
+    <section className="hero">
       <div className="hero-left">
-        <span className="hero-pill">
-          <i className="fa-solid fa-sparkles"></i> Atendimento rápido
-        </span>
-        <div className="hero-image-frame">
-          <img 
-            src="https://www.pagoufacil.com.br/wp-content/uploads/2024/11/como-conseguir-dinheiro-rapido.png"
-            alt="Cliente sorrindo segurando notas de dinheiro"
-          />
-        </div>
+        <div className="hero-pill">Atendimento Rápido</div>
         <div className="hero-card">
           <h1>Está passando por dificuldades financeiras?</h1>
-          <p className="hero-lead">
-            Somos a equipe Braz Empréstimos: resolvemos pendências com urgência, sem enrolação e com conversa humana pelo WhatsApp.
-          </p>
-          <ul className="hero-checks" aria-label="Benefícios imediatos">
-            <li>✔ Contas atrasadas te preocupando?</li>
-            <li>✔ Precisando de dinheiro com urgência?</li>
-            <li>✔ Sem consulta ao SPC/Serasa.</li>
-            <li>✔ Dinheiro liberado na hora.</li>
+          <p className="hero-lead">Somos a equipe Braz Empréstimos: resolvemos pendências com urgência, sem enrolação e com conversa humana pelo WhatsApp.</p>
+          <ul className="hero-checks">
+            <li>Contas atrasadas te preocupando?</li>
+            <li>Precisando de dinheiro com urgência?</li>
+            <li>Sem consulta ao SPC/Serasa.</li>
+            <li>Dinheiro liberado na hora.</li>
           </ul>
-          <div className="hero-stats" aria-label="Indicadores de confiança">
-            <div>
-              <strong>+3.500</strong>
-              <span>Liberações concluídas</span>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <div className="hero-stat-value">+3.500</div>
+              <div className="hero-stat-label">Liberações concluídas</div>
             </div>
-            <div>
-              <strong>15 min</strong>
-              <span>Tempo médio para iniciar o atendimento</span>
+            <div className="hero-stat">
+              <div className="hero-stat-value">15 min</div>
+              <div className="hero-stat-label">Tempo médio para iniciar o atendimento</div>
             </div>
           </div>
+          <button className="cta-button" onClick={onContactClick}>Falar com Especialista</button>
         </div>
       </div>
-
-      <CitySelector />
-    </header>
+      <div className="hero-panel">
+        <h3>Qual cidade você mora?</h3>
+        <p className="hero-panel-desc">Clique na sua cidade para liberar o atendimento direto com o especialista no WhatsApp.</p>
+        <div className="city-buttons">
+          <button className="city-btn">SÃO JOAQUIM DE BICAS</button>
+          <button className="city-btn">BETIM</button>
+          <button className="city-btn">CONTAGEM</button>
+          <button className="city-btn">IBIRITÉ</button>
+          <button className="city-btn">OUTRAS CIDADES</button>
+        </div>
+        <input type="text" className="city-input" placeholder="Minha cidade não está na lista" />
+        <button className="cta-button">Falar com Especialista</button>
+      </div>
+      <div className="hero-image-frame">
+        <img src="https://via.placeholder.com/400x400?text=Mulher+com+Dinheiro" alt="Mulher com dinheiro" />
+      </div>
+    </section>
   )
 }
