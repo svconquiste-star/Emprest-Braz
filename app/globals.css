@@ -57,12 +57,13 @@ p{
 
 .hero{
   display:grid;
-  grid-template-columns:minmax(0,1.3fr) minmax(320px,.8fr);
+  grid-template-columns:1fr 1fr;
   gap:36px;
   background:var(--bg-hero);
   border-radius:40px;
   padding:36px;
   box-shadow:var(--shadow);
+  align-items:start;
 }
 .hero-left{
   display:flex;
@@ -278,7 +279,7 @@ p{
 }
 
 section{
-  margin-top:70px;
+  margin-top:50px;
 }
 .section-head{
   display:flex;
