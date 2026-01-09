@@ -2,8 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  basePath: '/braz-emprestimos',
-  trailingSlash: false,
+  output: 'standalone',
 }
 
 module.exports = nextConfig
