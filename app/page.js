@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import Hero from '@/components/Hero'
-import CitySelector from '@/components/CitySelector'
-import Benefits from '@/components/Benefits'
-import Steps from '@/components/Steps'
-import Proof from '@/components/Proof'
-import FAQ from '@/components/FAQ'
-import Modal from '@/components/Modal'
+import Hero from '../components/Hero'
+import CitySelector from '../components/CitySelector'
+import Benefits from '../components/Benefits'
+import Steps from '../components/Steps'
+import Proof from '../components/Proof'
+import FAQ from '../components/FAQ'
+import Modal from '../components/Modal'
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
