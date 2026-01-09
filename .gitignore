@@ -2,6 +2,7 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+pnpm-debug.log
 
 # IDE
 .vscode/
@@ -11,11 +12,11 @@ yarn-error.log
 *~
 .DS_Store
 
-# Build
-dist/
+# Next.js
+.next/
+out/
 build/
-*.min.js
-*.min.css
+dist/
 
 # Environment
 .env
@@ -25,3 +26,10 @@ build/
 # OS
 Thumbs.db
 .DS_Store
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.pem
