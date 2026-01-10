@@ -1,4 +1,11 @@
 export default function Hero({ onContactClick }) {
+  const handleWhatsAppClick = () => {
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('trackCustom', 'ConversaIniciada');
+    }
+    window.open('https://wa.me/5531973443985?text=Olá%20Braz%20Empréstimos%2C%20gostaria%20de%20saber%20mais%20sobre%20empréstimos', '_blank');
+  };
+
   return (
     <section className="hero">
       <div className="hero-left">
@@ -22,7 +29,7 @@ export default function Hero({ onContactClick }) {
               <div className="hero-stat-label">Tempo médio para iniciar o atendimento</div>
             </div>
           </div>
-          <button className="cta-button" onClick={onContactClick}>Falar com Especialista</button>
+          <button className="cta-button" onClick={handleWhatsAppClick}>Falar com Especialista</button>
         </div>
       </div>
       <div className="hero-panel">
@@ -36,7 +43,7 @@ export default function Hero({ onContactClick }) {
           <button className="city-btn">OUTRAS CIDADES</button>
         </div>
         <input type="text" className="city-input" placeholder="Minha cidade não está na lista" />
-        <button className="cta-button">Falar com Especialista</button>
+        <button className="cta-button" onClick={handleWhatsAppClick}>Falar com Especialista</button>
       </div>
       <div className="hero-image-frame">
         <img src="https://via.placeholder.com/400x400?text=Mulher+com+Dinheiro" alt="Mulher com dinheiro" />
