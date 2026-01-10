@@ -32,22 +32,6 @@ export default function Hero({ onContactClick }) {
           <button className="cta-button" onClick={handleWhatsAppClick}>Falar com Especialista</button>
         </div>
       </div>
-      <div className="hero-panel">
-        <h3>Qual cidade você mora?</h3>
-        <p className="hero-panel-desc">Clique na sua cidade para liberar o atendimento direto com o especialista no WhatsApp.</p>
-        <div className="city-buttons">
-          <button className="city-btn">SÃO JOAQUIM DE BICAS</button>
-          <button className="city-btn">BETIM</button>
-          <button className="city-btn">CONTAGEM</button>
-          <button className="city-btn">IBIRITÉ</button>
-          <button className="city-btn">OUTRAS CIDADES</button>
-        </div>
-        <input type="text" className="city-input" placeholder="Minha cidade não está na lista" />
-        <button className="cta-button" onClick={handleWhatsAppClick}>Falar com Especialista</button>
-      </div>
-      <div className="hero-image-frame">
-        <img src="https://via.placeholder.com/400x400?text=Mulher+com+Dinheiro" alt="Mulher com dinheiro" />
-      </div>
     </section>
   )
 }
