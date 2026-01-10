@@ -1,5 +1,6 @@
 import { Outfit, Merriweather } from 'next/font/google'
 import './globals.css'
+import { Providers } from './providers'
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
 const merriweather = Merriweather({ 
@@ -46,7 +47,9 @@ export default function RootLayout({ children }) {
         </noscript>
       </head>
       <body>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

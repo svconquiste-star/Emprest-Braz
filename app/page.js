@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Hero from '../components/Hero'
 import CitySelector from '../components/CitySelector'
+import WhatsAppButton from '../components/WhatsAppButton'
 import Benefits from '../components/Benefits'
 import Steps from '../components/Steps'
 import Proof from '../components/Proof'
@@ -15,8 +16,11 @@ export default function Home() {
   return (
     <main className="shell">
       <div className="content">
-        <Hero onContactClick={() => setShowModal(true)} />
-        <CitySelector />
+        <div className="hero-city-section">
+          <Hero onContactClick={() => setShowModal(true)} />
+          <CitySelector />
+        </div>
+        <WhatsAppButton />
         <Benefits />
         <Steps />
         <Proof />

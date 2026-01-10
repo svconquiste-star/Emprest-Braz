@@ -1,0 +1,15 @@
+traefik.enable=true
+traefik.http.middlewares.gzip.compress=true
+traefik.http.middlewares.braz-stripprefix.stripprefix.prefixes=/braz-emprestimos
+traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+traefik.http.routers.http.entryPoints=http
+traefik.http.routers.http.middlewares=redirect-to-https
+traefik.http.routers.http.rule=Host(`multinexo.com.br`) && PathPrefix(`/braz-emprestimos`)
+traefik.http.routers.http.service=nextjs
+traefik.http.routers.https.entryPoints=https
+traefik.http.routers.https.middlewares=braz-stripprefix,gzip
+traefik.http.routers.https.rule=Host(`multinexo.com.br`) && PathPrefix(`/braz-emprestimos`)
+traefik.http.routers.https.service=nextjs
+traefik.http.routers.https.tls.certresolver=letsencrypt
+traefik.http.routers.https.tls=true
+traefik.http.services.nextjs.loadbalancer.server.port=3000

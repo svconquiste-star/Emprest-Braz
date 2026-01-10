@@ -1,11 +1,6 @@
-export default function Hero({ onContactClick }) {
-  const handleWhatsAppClick = () => {
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('trackCustom', 'ConversaIniciada');
-    }
-    window.open('https://wa.me/5531973443985?text=Olá%20Braz%20Empréstimos%2C%20gostaria%20de%20saber%20mais%20sobre%20empréstimos', '_blank');
-  };
+'use client'
 
+export default function Hero({ onContactClick }) {
   return (
     <section className="hero">
       <div className="hero-left">
@@ -29,7 +24,6 @@ export default function Hero({ onContactClick }) {
               <div className="hero-stat-label">Tempo médio para iniciar o atendimento</div>
             </div>
           </div>
-          <button className="cta-button" onClick={handleWhatsAppClick}>Falar com Especialista</button>
         </div>
       </div>
     </section>
