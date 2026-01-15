@@ -196,9 +196,10 @@ body.modal-open { overflow: hidden; }
 
 .warning-subtext { font-size: 13px; color: var(--muted); margin: 0; }
 
-@media (max-width: 980px) {
-  .hero-city-section { grid-template-columns: 1fr; padding: 28px; }
-  .hero-panel { order: -1; }
+@media (max-width: 768px) {
+  .hero-city-section { grid-template-columns: 1fr; padding: 28px; display: flex; flex-direction: column; }
+  .hero-panel { order: 2; }
+  .whatsapp-button-container { order: 3; margin-top: 20px; }
   section { margin-top: 48px; }
   .proof-grid { grid-template-columns: 1fr; }
 }
@@ -208,15 +209,17 @@ body.modal-open { overflow: hidden; }
   .hero-city-section { padding: 22px; border-radius: 26px; }
   .hero-stats { flex-direction: column; }
   .proof-stats { grid-template-columns: 1fr; }
+  .whatsapp-button-container { order: 3; margin-top: 20px; }
 }
 
 @media (max-width: 430px) {
   body { padding: 14px 12px 48px; }
-  .hero-city-section { padding: 20px; border-radius: 22px; gap: 22px; }
+  .hero-city-section { padding: 20px; border-radius: 22px; gap: 22px; display: flex; flex-direction: column; }
   .hero h1 { font-size: 26px; }
   .hero p { font-size: 13px; }
-  .hero-panel { padding: 22px 18px; }
+  .hero-panel { padding: 22px 18px; order: 2; }
   .city-buttons { grid-template-columns: 1fr; }
   .section h2 { font-size: 26px; }
-  .cta-button { padding: 16px; font-size: 14px; }
+  .cta-button { padding: 16px; font-size: 14px; width: 100%; }
+  .whatsapp-button-container { order: 3; margin-top: 20px; width: 100%; }
 }
