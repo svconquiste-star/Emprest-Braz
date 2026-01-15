@@ -1,9 +1,9 @@
 export default function Steps() {
   const steps = [
-    { num: '1', title: 'Contato', desc: 'Envie uma mensagem no WhatsApp' },
-    { num: '2', title: 'Análise', desc: 'Analisamos sua situação' },
-    { num: '3', title: 'Aprovação', desc: 'Receba a aprovação em minutos' },
-    { num: '4', title: 'Liberação', desc: 'Dinheiro na sua conta' },
+    { num: '1', title: 'Selecione a cidade', desc: 'Qualifique sua região na lista de atendimento' },
+    { num: '2', title: 'Converse no WhatsApp', desc: 'Fale com especialista que vai entender seu caso' },
+    { num: '3', title: 'Envie documentos', desc: 'Upload seguro com criptografia de ponta a ponta' },
+    { num: '4', title: 'Receba e PIX', desc: 'Dinheiro na sua conta em até 24h' },
   ]
 
   return (

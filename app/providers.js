@@ -1,11 +1,14 @@
 'use client'
 
 import { CityProvider } from '../context/CityContext'
+import { WhatsAppProvider } from '../context/WhatsAppContext'
 
 export function Providers({ children }) {
   return (
-    <CityProvider>
-      {children}
-    </CityProvider>
+    <WhatsAppProvider>
+      <CityProvider>
+        {children}
+      </CityProvider>
+    </WhatsAppProvider>
   )
 }

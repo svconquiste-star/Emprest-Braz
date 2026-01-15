@@ -9,7 +9,7 @@ export default function Modal({ onClose }) {
   }, [])
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay active" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>Fale com um Especialista</h2>

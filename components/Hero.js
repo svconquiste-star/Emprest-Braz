@@ -6,22 +6,16 @@ export default function Hero({ onContactClick }) {
       <div className="hero-left">
         <div className="hero-pill">Atendimento Rápido</div>
         <div className="hero-card">
-          <h1>Está passando por dificuldades financeiras?</h1>
-          <p className="hero-lead">Somos a equipe Braz Empréstimos: resolvemos pendências com urgência, sem enrolação e com conversa humana pelo WhatsApp.</p>
-          <ul className="hero-checks">
-            <li>Contas atrasadas te preocupando?</li>
-            <li>Precisando de dinheiro com urgência?</li>
-            <li>Sem consulta ao SPC/Serasa.</li>
-            <li>Dinheiro liberado na hora.</li>
-          </ul>
+          <h1>Escolha sua cidade e destrave o atendimento VIP no WhatsApp</h1>
+          <p className="hero-lead">Um especialista da nossa equipe entra em contato em poucos minutos para consultar sua situação com segurança, transparência e agilidade. O PIX sai na sua conta em até 24h.</p>
           <div className="hero-stats">
             <div className="hero-stat">
-              <div className="hero-stat-value">+3.500</div>
+              <div className="hero-stat-value">+2.500</div>
               <div className="hero-stat-label">Liberações concluídas</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-value">15 min</div>
-              <div className="hero-stat-label">Tempo médio para iniciar o atendimento</div>
+              <div className="hero-stat-value">9/10</div>
+              <div className="hero-stat-label">Clientes satisfeitos</div>
             </div>
           </div>
         </div>

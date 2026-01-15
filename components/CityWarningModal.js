@@ -9,7 +9,7 @@ export default function CityWarningModal({ onClose }) {
   }, [])
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay active" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>Cidade Não Atendida</h2>

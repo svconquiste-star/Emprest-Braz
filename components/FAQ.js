@@ -6,15 +6,16 @@ export default function FAQ() {
   const [open, setOpen] = useState(null)
 
   const faqs = [
-    { q: 'Qual é o valor mínimo?', a: 'O valor mínimo é R$ 500,00' },
-    { q: 'Preciso de documentos?', a: 'Sim, você precisará de RG, CPF e comprovante de renda' },
-    { q: 'Quanto tempo leva?', a: 'Em média 15 minutos para iniciar o atendimento' },
-    { q: 'Vocês consultam SPC?', a: 'Não, não consultamos SPC ou Serasa' },
+    { q: 'Os dados enviados ficam seguros?', a: 'Sim, utilizamos criptografia de ponta a ponta e protocolos de segurança internacionais para proteger seus dados pessoais e financeiros.' },
+    { q: 'Existe algum custo escondido?', a: 'Não, somos transparentes. Você saberá exatamente quanto vai pagar antes de assinar qualquer contrato.' },
+    { q: 'Quanto documentos preciso ter em mãos?', a: 'Você precisará de RG, CPF, comprovante de renda e comprovante de endereço. Tudo pode ser enviado pelo WhatsApp.' },
+    { q: 'E se minha cidade não estiver disponível?', a: 'Você pode entrar em contato mesmo assim. Estamos expandindo constantemente e podemos analisar sua situação.' },
   ]
 
   return (
     <section className="section">
       <h2>Perguntas frequentes</h2>
+      <p style={{ marginBottom: '24px', fontSize: '15px', color: 'var(--muted)' }}>Informações rápidas para você entender como a gente funciona:</p>
       <div className="faq-list">
         {faqs.map((f, i) => (
           <div key={i} className="faq-item">
