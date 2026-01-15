@@ -4,31 +4,32 @@ import { createContext, useContext, useState, useEffect } from 'react'
 
 const WhatsAppContext = createContext()
 
-const WHATSAPP_NUMBERS = [
-  '5531973443985',
-  '5531987008478'
-]
+const WHATSAPP_NUMBERS = {
+  primary: '5531987008478',    // 60%
+  secondary: '5531973443985'   // 40%
+}
 
 export function WhatsAppProvider({ children }) {
-  const [currentNumberIndex, setCurrentNumberIndex] = useState(0)
+  const [currentNumber, setCurrentNumber] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedIndex = localStorage.getItem('whatsappNumberIndex')
-      if (savedIndex !== null) {
-        const nextIndex = (parseInt(savedIndex) + 1) % WHATSAPP_NUMBERS.length
-        setCurrentNumberIndex(nextIndex)
-        localStorage.setItem('whatsappNumberIndex', nextIndex.toString())
-      } else {
-        localStorage.setItem('whatsappNumberIndex', '0')
-      }
+      const visitCount = parseInt(localStorage.getItem('whatsappVisitCount') || '0')
+      const nextVisitCount = visitCount + 1
+      localStorage.setItem('whatsappVisitCount', nextVisitCount.toString())
+
+      // Balanceamento 60/40: a cada 10 visitas, 6 vão para primary e 4 para secondary
+      const positionIn10 = nextVisitCount % 10
+      const selectedNumber = positionIn10 <= 6 ? WHATSAPP_NUMBERS.primary : WHATSAPP_NUMBERS.secondary
+
+      setCurrentNumber(selectedNumber)
     }
     setIsLoaded(true)
   }, [])
 
   const getCurrentNumber = () => {
-    return WHATSAPP_NUMBERS[currentNumberIndex]
+    return currentNumber || WHATSAPP_NUMBERS.primary
   }
 
   return (
