@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useCityContext } from '../context/CityContext'
 import CityWarningModal from './CityWarningModal'
 import WhatsAppFormModal from './WhatsAppFormModal'
+import { getTrackingManager } from '../lib/tracking'
 
 export default function WhatsAppButton() {
   const { selectedCity, isCityCovered } = useCityContext()
@@ -14,22 +15,24 @@ export default function WhatsAppButton() {
     e.preventDefault()
     
     if (!selectedCity) {
-      console.log('Nenhuma cidade selecionada')
       return
     }
 
     if (!isCityCovered) {
-      console.log('Cidade não coberta:', selectedCity)
+      const tracking = getTrackingManager()
+      if (tracking) {
+        tracking.trackCityNotAvailable(selectedCity)
+      }
       setShowWarning(true)
       return
     }
 
-    console.log('Abrindo formulário para:', selectedCity)
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('trackCustom', 'ConversaIniciada');
+    const tracking = getTrackingManager()
+    if (tracking) {
+      tracking.trackLead(selectedCity, '', '', '')
     }
     setShowFormModal(true)
-  };
+  }
 
   const isButtonDisabled = !selectedCity || !isCityCovered
 
@@ -41,6 +44,7 @@ export default function WhatsAppButton() {
           onClick={handleWhatsAppClick}
           disabled={isButtonDisabled}
           title={!selectedCity ? 'Selecione uma cidade' : !isCityCovered ? 'Cidade não atendida' : 'Clique para falar com especialista'}
+          type="button"
         >
           Falar com Especialista
         </button>

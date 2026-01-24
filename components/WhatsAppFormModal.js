@@ -1,12 +1,15 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useCityContext } from '../context/CityContext'
 import { useWhatsAppContext } from '../context/WhatsAppContext'
+import { validatePhone } from '../lib/phoneValidator'
+import { getTrackingManager } from '../lib/tracking'
 
 export default function WhatsAppFormModal({ onClose }) {
   const { selectedCity } = useCityContext()
   const { getCurrentNumber } = useWhatsAppContext()
+  const modalRef = useRef(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,10 +17,13 @@ export default function WhatsAppFormModal({ onClose }) {
     city: selectedCity || ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errors, setErrors] = useState({})
 
   useEffect(() => {
-    document.body.classList.add('modal-open')
-    return () => document.body.classList.remove('modal-open')
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
   }, [])
 
   const handleChange = (e) => {
@@ -26,92 +32,162 @@ export default function WhatsAppFormModal({ onClose }) {
       ...prev,
       [name]: value
     }))
+    
+    if (name === 'phone') {
+      const validation = validatePhone(value)
+      
+      if (!validation.valid && value) {
+        const tracking = getTrackingManager()
+        if (tracking) {
+          tracking.trackValidationError('phone', validation.error)
+        }
+      }
+    }
+    
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
   }
 
-  const handleSubmit = (e) => {
+  const isFormValid = () => {
+    const newErrors = {}
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Nome é obrigatório'
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email é obrigatório'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Email inválido'
+    }
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Telefone é obrigatório'
+    } else {
+      const validation = validatePhone(formData.phone)
+      if (!validation.valid) {
+        newErrors.phone = validation.error
+      }
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if (!formData.name || !formData.email || !formData.phone) {
-      alert('Por favor, preencha todos os campos obrigatórios')
+    if (!isFormValid()) {
       return
     }
 
     setIsSubmitting(true)
 
-    const whatsappNumber = getCurrentNumber()
-    const message = `Olá Braz Empréstimos! Meu nome é ${formData.name}, sou de ${formData.city}, meu email é ${formData.email} e meu telefone é ${formData.phone}. Gostaria de saber mais sobre empréstimos.`
-    const encodedMessage = encodeURIComponent(message)
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
+    try {
+      const tracking = getTrackingManager()
+      if (tracking) {
+        await tracking.trackConversaIniciada(formData.city, formData.phone, formData.email, formData.name)
+      }
 
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('trackCustom', 'ConversaIniciada');
-    }
+      const whatsappNumber = getCurrentNumber()
+      const message = `Olá! Quero fazer uma simulação de empréstimo. Moro em ${formData.city} e meu telefone é ${formData.phone}`
+      const encodedMessage = encodeURIComponent(message)
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
 
-    // Enviar automaticamente após 500ms
-    setTimeout(() => {
-      window.open(whatsappUrl, '_blank')
-      
       setTimeout(() => {
-        onClose()
-        setIsSubmitting(false)
+        window.open(whatsappUrl, '_blank')
+        
+        setTimeout(() => {
+          onClose()
+          setIsSubmitting(false)
+        }, 500)
       }, 500)
-    }, 500)
+    } catch (error) {
+      const tracking = getTrackingManager()
+      if (tracking) {
+        tracking.trackContactError(error.message)
+      }
+      setIsSubmitting(false)
+    }
   }
 
+  const isPhoneValid = formData.phone ? validatePhone(formData.phone).valid : true
+  const isFormComplete = formData.name.trim() && formData.email.trim() && isPhoneValid && selectedCity
+
   return (
-    <div className="modal-overlay active" onClick={onClose}>
+    <div className="modal-overlay active" ref={modalRef} onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>Fale com um Especialista</h2>
-          <button className="modal-close" onClick={onClose}>×</button>
+          <button className="modal-close" onClick={onClose} type="button">×</button>
         </div>
         <form className="modal-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Nome *</label>
+            <label htmlFor="name">Nome *</label>
             <input 
+              id="name"
               type="text" 
               name="name"
               placeholder="Seu nome completo" 
               value={formData.name}
               onChange={handleChange}
-              required
+              className={errors.name ? 'input-error' : ''}
             />
+            {errors.name && <span className="error-message">{errors.name}</span>}
           </div>
+
           <div className="form-group">
-            <label>Cidade *</label>
+            <label htmlFor="email">Email *</label>
             <input 
-              type="text" 
-              name="city"
-              placeholder="Sua cidade" 
-              value={formData.city}
-              onChange={handleChange}
-              disabled
-            />
-          </div>
-          <div className="form-group">
-            <label>Email *</label>
-            <input 
+              id="email"
               type="email" 
               name="email"
               placeholder="seu@email.com" 
               value={formData.email}
               onChange={handleChange}
-              required
+              className={errors.email ? 'input-error' : ''}
             />
+            {errors.email && <span className="error-message">{errors.email}</span>}
           </div>
+
           <div className="form-group">
-            <label>Telefone/WhatsApp *</label>
+            <label htmlFor="phone">Telefone/WhatsApp *</label>
             <input 
+              id="phone"
               type="tel" 
               name="phone"
-              placeholder="(31) 99999-9999" 
+              placeholder="(31) 99999-9999 ou 31 9999-9999" 
               value={formData.phone}
               onChange={handleChange}
-              required
+              className={errors.phone ? 'input-error' : ''}
+            />
+            {errors.phone && <span className="error-message">{errors.phone}</span>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="city">Cidade *</label>
+            <input 
+              id="city"
+              type="text" 
+              name="city"
+              placeholder="Sua cidade" 
+              value={formData.city}
+              onChange={() => {}}
+              disabled
             />
           </div>
-          <button type="submit" className="form-submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Redirecionando...' : 'Falar no WhatsApp'}
+
+          <button 
+            type="submit" 
+            className="form-submit" 
+            disabled={isSubmitting || !isFormComplete}
+            title={!isFormComplete ? 'Preencha todos os campos corretamente' : ''}
+          >
+            {isSubmitting ? 'Redirecionando...' : 'Iniciar Conversa'}
           </button>
         </form>
       </div>

@@ -1,6 +1,6 @@
 'use client'
 
-export default function Hero({ onContactClick }) {
+export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-left">

@@ -17,12 +17,12 @@ export const metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#2149ff',
+  themeColor: '#1b9d7d',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className={`${outfit.variable} ${merriweather.variable}`}>
+    <html lang="pt-BR" className={`${outfit.variable} ${merriweather.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -38,15 +38,12 @@ export default function RootLayout({ children }) {
           }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
           fbq('init','1013145803462320');
           fbq('track','PageView');
-          function trackWhatsApp(){
-            try { fbq('trackCustom','ConversaIniciada'); } catch(e) {}
-          }
         `}} />
         <noscript>
           <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1013145803462320&ev=PageView&noscript=1" alt="" />
         </noscript>
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <Providers>
           {children}
         </Providers>

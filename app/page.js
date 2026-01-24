@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect } from 'react'
 import Hero from '../components/Hero'
 import CitySelector from '../components/CitySelector'
 import WhatsAppButton from '../components/WhatsAppButton'
@@ -8,16 +8,21 @@ import Benefits from '../components/Benefits'
 import Steps from '../components/Steps'
 import Proof from '../components/Proof'
 import FAQ from '../components/FAQ'
-import Modal from '../components/Modal'
+import { getTrackingManager } from '../lib/tracking'
 
 export default function Home() {
-  const [showModal, setShowModal] = useState(false)
+  useEffect(() => {
+    const tracking = getTrackingManager()
+    if (tracking) {
+      tracking.trackViewContent()
+    }
+  }, [])
 
   return (
     <main className="shell">
       <div className="content">
         <div className="hero-city-section">
-          <Hero onContactClick={() => setShowModal(true)} />
+          <Hero />
           <CitySelector />
         </div>
         <WhatsAppButton />
@@ -26,7 +31,6 @@ export default function Home() {
         <Proof />
         <FAQ />
       </div>
-      {showModal && <Modal onClose={() => setShowModal(false)} />}
     </main>
   )
 }

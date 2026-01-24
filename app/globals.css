@@ -178,7 +178,19 @@ footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid rgba(255, 25
 
 .form-submit { border: none; border-radius: 14px; padding: 12px 28px; font-weight: 700; cursor: pointer; background: linear-gradient(120deg, #00d4aa, #00b894); color: #0f1419; box-shadow: 0 16px 40px rgba(0, 212, 170, 0.35); transition: all 0.2s; }
 
-.form-submit:hover { transform: translateY(-2px); box-shadow: 0 20px 50px rgba(0, 212, 170, 0.45); }
+.form-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 20px 50px rgba(0, 212, 170, 0.45); }
+
+.form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.input-error { border-color: #ff6b6b !important; background: rgba(255, 107, 107, 0.08) !important; }
+
+.input-error:focus { border-color: #ff6b6b !important; box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1) !important; }
+
+.error-message { font-size: 12px; color: #ff6b6b; margin-top: 4px; display: block; }
+
+.modal-close { position: absolute; top: 12px; right: 12px; background: none; border: none; font-size: 28px; color: var(--text); cursor: pointer; padding: 0; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+
+.modal-close:hover { color: var(--accent); }
 
 .modal-close-btn { border: none; border-radius: 14px; padding: 12px 28px; font-weight: 700; cursor: pointer; background: linear-gradient(120deg, #ff6b6b, #ff5252); color: #f7fbff; box-shadow: 0 16px 40px rgba(255, 107, 107, 0.35); transition: all 0.2s; }
 

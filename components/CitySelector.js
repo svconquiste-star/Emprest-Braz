@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useCityContext } from '../context/CityContext'
 import CityWarningModal from './CityWarningModal'
+import { getTrackingManager } from '../lib/tracking'
 
 export default function CitySelector() {
   const { selectCity, COVERED_CITIES, selectedCity } = useCityContext()
@@ -10,10 +11,20 @@ export default function CitySelector() {
 
   const handleCitySelect = (city) => {
     selectCity(city)
+    
+    const tracking = getTrackingManager()
+    if (tracking) {
+      tracking.trackViewContent(city)
+    }
   }
 
   const handleOtherCities = () => {
     setShowWarning(true)
+    
+    const tracking = getTrackingManager()
+    if (tracking) {
+      tracking.trackCityNotAvailable('Outras Cidades')
+    }
   }
 
   return (
@@ -30,6 +41,7 @@ export default function CitySelector() {
               key={city}
               className={`city-btn ${selectedCity === city ? 'active' : ''}`}
               onClick={() => handleCitySelect(city)}
+              type="button"
             >
               {city}
             </button>
@@ -37,6 +49,7 @@ export default function CitySelector() {
           <button
             className="city-btn other-cities-btn"
             onClick={handleOtherCities}
+            type="button"
           >
             Outras Cidades
           </button>

@@ -13,23 +13,12 @@ export default function Modal({ onClose }) {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>Fale com um Especialista</h2>
-          <button className="modal-close" onClick={onClose}>×</button>
+          <button className="modal-close" onClick={onClose} type="button">×</button>
         </div>
-        <form className="modal-form">
-          <div className="form-group">
-            <label>Nome</label>
-            <input type="text" placeholder="Seu nome" />
-          </div>
-          <div className="form-group">
-            <label>WhatsApp</label>
-            <input type="tel" placeholder="(11) 99999-9999" />
-          </div>
-          <div className="form-group">
-            <label>Mensagem</label>
-            <textarea placeholder="Conte-nos como podemos ajudar"></textarea>
-          </div>
-          <button type="submit" className="form-submit">Enviar</button>
-        </form>
+        <div className="modal-body">
+          <p>Selecione uma cidade para continuar.</p>
+        </div>
+        <button className="modal-close-btn" onClick={onClose}>Fechar</button>
       </div>
     </div>
   )

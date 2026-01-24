@@ -13,14 +13,14 @@ export default function CityWarningModal({ onClose }) {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2>Cidade Não Atendida</h2>
-          <button className="modal-close" onClick={onClose}>×</button>
+          <button className="modal-close" onClick={onClose} type="button">×</button>
         </div>
         <div className="modal-body">
           <p className="warning-message">
             No Momento Não Estamos Atuando Na Cidade Selecionada, Mas Breve iremos chegar Na Sua Cidade
           </p>
         </div>
-        <button className="modal-close-btn" onClick={onClose}>Entendi</button>
+        <button className="modal-close-btn" onClick={onClose} type="button">Entendi</button>
       </div>
     </div>
   )
