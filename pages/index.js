@@ -78,8 +78,14 @@ function validateEventData(data) {
 
 function sanitizeForPixel(payload) {
   const sanitized = {};
+  const blockedKeys = new Set([
+    'email',
+    'phone',
+    'client_user_agent',
+  ]);
   Object.entries(payload || {}).forEach(([key, value]) => {
     if (value === undefined || value === null) return;
+    if (blockedKeys.has(key)) return;
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
       sanitized[key] = value;
       return;
@@ -97,6 +103,22 @@ function sanitizeForPixel(payload) {
 }
 
 const sentEventIds = new Set();
+const appliedAdvancedMatchingKeys = new Set();
+
+function applyAdvancedMatching({ em, ph, fn } = {}) {
+  try {
+    if (typeof window === 'undefined' || !window.fbq) return;
+    if (!em && !ph && !fn) return;
+    const key = `${em || ''}|${ph || ''}|${fn || ''}`;
+    if (appliedAdvancedMatchingKeys.has(key)) return;
+    window.fbq('init', PIXEL_ID, {
+      em: em || undefined,
+      ph: ph || undefined,
+      fn: fn || undefined,
+    });
+    appliedAdvancedMatchingKeys.add(key);
+  } catch (_) {}
+}
 
 async function sendToN8n(payload) {
   const body = {
@@ -332,7 +354,9 @@ export default function Home() {
     const ph = normalizedPhone ? await hashSHA256(normalizedPhone) : '';
     const fn = name ? await hashSHA256(String(name).trim().toLowerCase()) : '';
 
-    const common = {
+    applyAdvancedMatching({ em, ph, fn });
+
+    const commonForServer = {
       cidade: selectedCity,
       time_on_page: timeOnPageSeconds,
       scroll_percentage: maxScrollPercentage,
@@ -343,30 +367,46 @@ export default function Home() {
       fn: fn || undefined,
     };
 
+    const commonForPixel = {
+      cidade: selectedCity,
+      time_on_page: timeOnPageSeconds,
+      scroll_percentage: maxScrollPercentage,
+      em: em || undefined,
+      ph: ph || undefined,
+      fn: fn || undefined,
+    };
+
     await trackEvent({
       event_name: 'WhatsAppButtonClick',
-      data: common,
+      data: commonForServer,
+    });
+
+    await trackEvent({
+      event_name: 'ConversaIniciada',
+      pixelMethod: 'trackCustom',
+      pixelEventName: 'ConversaIniciada',
+      data: commonForPixel,
     });
 
     await trackEvent({
       event_name: 'Lead',
       pixelMethod: 'track',
       pixelEventName: 'Lead',
-      data: common,
+      data: commonForPixel,
     });
 
     const contactResult = await trackEvent({
       event_name: 'Contact',
       pixelMethod: 'track',
       pixelEventName: 'Contact',
-      data: common,
+      data: commonForPixel,
     });
 
     if (!contactResult.ok) {
       await trackEvent({
         event_name: 'ContactError',
         data: {
-          ...common,
+          ...commonForServer,
           error_reason: contactResult.reason,
         },
       });
