@@ -132,7 +132,7 @@ hooks/
 ## 8. Configurações Importantes
 
 ### Meta Pixel ID
-- **ID**: 1013145803462320
+- **ID**: 1564023121525783
 
 ### Webhook N8N
 - **URL**: https://n8n.multinexo.com.br/webhook/fc21d45c-e8e6-464b-b555-f78238f85239

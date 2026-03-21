@@ -117,7 +117,7 @@ Olá! Quero fazer uma simulação de empréstimo. Moro em [CIDADE] e meu telefon
 **Verificação:**
 - [ ] Abrir DevTools → Console
 - [ ] Verificar se não há erros de rastreamento
-- [ ] Meta Pixel Pixel ID: 1013145803462320
+- [ ] Meta Pixel Pixel ID: 1564023121525783
 
 ---
 

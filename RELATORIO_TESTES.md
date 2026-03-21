@@ -37,7 +37,7 @@
 ## 3. FUNCIONALIDADES IMPLEMENTADAS ✅
 
 ### 3.1 Sistema de Rastreamento Meta Pixel
-- **Pixel ID**: 1013145803462320
+- **Pixel ID**: 1564023121525783
 - **Eventos Rastreados**:
   - ✅ ViewContent (página carregada, cidade selecionada)
   - ✅ ScrollMilestone (25%, 50%, 75%, 100%)

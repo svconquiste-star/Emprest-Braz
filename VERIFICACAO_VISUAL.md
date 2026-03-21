@@ -205,7 +205,7 @@ Olá! Quero fazer uma simulação de empréstimo. Moro em Belo Horizonte e meu t
 - ✅ Abrir DevTools (F12)
 - ✅ Ir para Console
 - ✅ Nenhum erro de rastreamento
-- ✅ Meta Pixel ID: 1013145803462320
+- ✅ Meta Pixel ID: 1564023121525783
 
 ---
 
