@@ -26,8 +26,6 @@ export default function Home() {
 
     if (!nome.trim()) {
       setNomeError('Nome é obrigatório')
-      const tracking = getTrackingManager()
-      if (tracking) tracking.trackValidationError('nome', 'empty')
       valid = false
     } else {
       setNomeError('')
@@ -36,8 +34,6 @@ export default function Home() {
     const telClean = telefone.replace(/\D/g, '')
     if (!/^\d{10,11}$/.test(telClean)) {
       setTelefoneError('Telefone inválido (ex: 31987654321)')
-      const tracking = getTrackingManager()
-      if (tracking) tracking.trackValidationError('telefone', 'invalid_format')
       valid = false
     } else {
       setTelefoneError('')
@@ -45,8 +41,6 @@ export default function Home() {
 
     if (!cidade.trim()) {
       setCidadeError('Cidade é obrigatória')
-      const tracking = getTrackingManager()
-      if (tracking) tracking.trackValidationError('cidade', 'empty')
       valid = false
     } else {
       setCidadeError('')
@@ -72,11 +66,9 @@ export default function Home() {
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=${text}&type=phone_number&app_absent=0`
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
 
-    // Tracking em background
+    // Tracking — evento Contact (padrão Meta) para Pixel + N8N
     const tracking = getTrackingManager()
     if (tracking) {
-      await tracking.trackConversaIniciada(cidadeTrim, telClean, '', nomeTrim)
-      await tracking.trackLead(cidadeTrim, telClean, '', nomeTrim)
       await tracking.trackContact(cidadeTrim, telClean, '', nomeTrim)
     }
 
