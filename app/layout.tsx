@@ -2,7 +2,7 @@ import './globals.css';
 
 import Script from 'next/script';
 
-const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
+const pixelId = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || '2291211478038763';
 
 export const metadata = {
   title: 'Simulação de Empréstimo | Atendimento via WhatsApp',
@@ -13,9 +13,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <head>
-        {pixelId ? (
-          <>
-            <Script
+        <>
+          <Script
               id="meta-pixel"
               strategy="afterInteractive"
               dangerouslySetInnerHTML={{
@@ -42,9 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 src={`https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1`}
                 alt=""
               />
-            </noscript>
-          </>
-        ) : null}
+          </noscript>
+        </>
       </head>
       <body>{children}</body>
     </html>
