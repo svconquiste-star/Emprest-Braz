@@ -99,7 +99,7 @@ export default function Home() {
           SIMULAÇÃO GRATUITA E SEGURA
         </div>
 
-        <h1>Precisa de crédito?<br />Simule agora pelo WhatsApp</h1>
+        <h1>Simule agora pelo WhatsApp</h1>
 
         <p className="subtitle">
           Preencha seus dados abaixo e fale direto com nosso especialista. Sem burocracia, sem fila.

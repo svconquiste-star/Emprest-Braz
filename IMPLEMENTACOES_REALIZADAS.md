@@ -9,7 +9,7 @@
 - **Nome**: Emprest-Braz
 - **Framework**: Next.js 14.2.35 (React 18.3.1)
 - **Repositório**: https://github.com/svconquiste-star/Emprest-Braz.git
-- **Tipo**: Landing page de simulação de empréstimo com formulário e redirecionamento ao WhatsApp
+- **Tipo**: Landing page de simulação de empréstimo via WhatsApp
 - **Layout**: Card centralizado, mobile-first, tela única
 
 ---
