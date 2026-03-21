@@ -28,6 +28,16 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
         <script dangerouslySetInnerHTML={{__html: `
+          (function(){
+            try{
+              var p=new URLSearchParams(window.location.search);
+              var fc=p.get('fbclid');
+              if(fc&&!document.cookie.match(/_fbc=/)){
+                var v='fb.1.'+Date.now()+'.'+fc;
+                document.cookie='_fbc='+v+';max-age=7776000;path=/;SameSite=Lax';
+              }
+            }catch(e){}
+          })();
           !function(f,b,e,v,n,t,s){
             if(f.fbq)return;n=f.fbq=function(){n.callMethod?
             n.callMethod.apply(n,arguments):n.queue.push(arguments)};

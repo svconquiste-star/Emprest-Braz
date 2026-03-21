@@ -8,9 +8,11 @@ const WHATSAPP_NUMBER = '553187008478'
 export default function Home() {
   const [nome, setNome] = useState('')
   const [telefone, setTelefone] = useState('')
+  const [email, setEmail] = useState('')
   const [cidade, setCidade] = useState('')
   const [nomeError, setNomeError] = useState('')
   const [telefoneError, setTelefoneError] = useState('')
+  const [emailError, setEmailError] = useState('')
   const [cidadeError, setCidadeError] = useState('')
   const [isSending, setIsSending] = useState(false)
 
@@ -39,6 +41,14 @@ export default function Home() {
       setTelefoneError('')
     }
 
+    const emailTrim = email.trim()
+    if (emailTrim && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrim)) {
+      setEmailError('Email inválido')
+      valid = false
+    } else {
+      setEmailError('')
+    }
+
     if (!cidade.trim()) {
       setCidadeError('Cidade é obrigatória')
       valid = false
@@ -47,7 +57,7 @@ export default function Home() {
     }
 
     return valid
-  }, [nome, telefone, cidade])
+  }, [nome, telefone, email, cidade])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -69,7 +79,7 @@ export default function Home() {
     // Tracking — evento Contact (padrão Meta) para Pixel + N8N
     const tracking = getTrackingManager()
     if (tracking) {
-      await tracking.trackContact(cidadeTrim, telClean, '', nomeTrim)
+      await tracking.trackContact(cidadeTrim, telClean, email.trim(), nomeTrim)
     }
 
     setIsSending(false)
@@ -78,7 +88,8 @@ export default function Home() {
   const isFormValid =
     nome.trim().length > 0 &&
     /^\d{10,11}$/.test(telefone.replace(/\D/g, '')) &&
-    cidade.trim().length > 0
+    cidade.trim().length > 0 &&
+    (email.trim() === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
 
   return (
     <div className="page">
@@ -119,6 +130,19 @@ export default function Home() {
               onChange={(e) => { setTelefone(e.target.value); setTelefoneError('') }}
             />
             {telefoneError && <span className="error-message">{telefoneError}</span>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Seu email <span style={{color:'var(--muted)',fontWeight:400,fontSize:'12px'}}>(opcional)</span></label>
+            <input
+              id="email"
+              type="email"
+              className={emailError ? 'input-error' : ''}
+              placeholder="Ex: seunome@email.com"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); setEmailError('') }}
+            />
+            {emailError && <span className="error-message">{emailError}</span>}
           </div>
 
           <div className="form-group">
