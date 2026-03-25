@@ -104,7 +104,7 @@ Emprest-Braz/
 
 | Configuração | Valor |
 |---|---|
-| **Meta Pixel ID** | `1564023121525783` |
+| **Meta Pixel ID** | `1417421122957716` |
 | **Webhook N8N** | `https://n8n.multinexo.com.br/webhook/fc21d45c-e8e6-464b-b555-f78238f85239` |
 | **WhatsApp (page.js)** | `553187008478` |
 | **autoConfig** | `false` (desabilitado — conformidade Core Config) |
@@ -260,7 +260,7 @@ npm run start
 |---|---|
 | `8642a8d` | feat: improve matching quality - add email, fn/ln/ct/fbc/fbp/ua |
 | `97c8356` | refactor: Core Config compliance - replace ConversaIniciada with Contact |
-| `f959dc6` | chore: update Meta Pixel ID to 1564023121525783 |
+| `f959dc6` | chore: update Meta Pixel ID to 1417421122957716 |
 | `0f58e8c` | refactor: single-screen card layout with form |
 | `018aab8` | feat: Advanced Matching - fbc, IP/UA, email hash |
 
@@ -270,7 +270,7 @@ npm run start
 
 ✅ Landing page single-screen com formulário (nome, telefone, email, cidade)
 ✅ Redirecionamento ao WhatsApp com mensagem dinâmica
-✅ Meta Pixel `1564023121525783` com apenas eventos padrão (Core Config)
+✅ Meta Pixel `1417421122957716` com apenas eventos padrão (Core Config)
 ✅ Advanced Matching completo: em, ph, fn, ln, ct, fbc, fbp, external_id, UA
 ✅ Persistência de fbclid → cookie _fbc no carregamento
 ✅ Webhook N8N recebe todos os dados de cada evento

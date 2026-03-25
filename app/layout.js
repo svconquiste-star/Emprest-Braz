@@ -46,12 +46,12 @@ export default function RootLayout({ children }) {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)
           }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-          fbq('set','autoConfig',false,'1564023121525783');
-          fbq('init','1564023121525783');
+          fbq('set','autoConfig',false,'1417421122957716');
+          fbq('init','1417421122957716');
           fbq('track','PageView');
         `}} />
         <noscript>
-          <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1564023121525783&ev=PageView&noscript=1" alt="" />
+          <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1417421122957716&ev=PageView&noscript=1" alt="" />
         </noscript>
       </head>
       <body suppressHydrationWarning>
