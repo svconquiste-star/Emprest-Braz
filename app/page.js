@@ -71,7 +71,7 @@ export default function Home() {
 
     // Abrir WhatsApp imediatamente
     const text = encodeURIComponent(
-      `Olá! Sou ${nomeTrim}. Quero fazer uma simulação de empréstimo. Moro em ${cidadeTrim} e meu telefone é ${telClean}`
+      `Olá! Sou ${nomeTrim}. Gostaria de falar com um especialista. Moro em ${cidadeTrim} e meu telefone é ${telClean}`
     )
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=${text}&type=phone_number&app_absent=0`
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
@@ -96,10 +96,10 @@ export default function Home() {
       <main className="card">
         <div className="badge">
           <i className="fa-solid fa-shield-halved"></i>
-          SIMULAÇÃO GRATUITA E SEGURA
+          ATENDIMENTO RÁPIDO E SEGURO
         </div>
 
-        <h1>Simule agora pelo WhatsApp</h1>
+        <h1>Fale agora pelo WhatsApp</h1>
 
         <p className="subtitle">
           Preencha seus dados abaixo e fale direto com nosso especialista. Sem burocracia, sem fila.
@@ -175,7 +175,7 @@ export default function Home() {
       </main>
 
       <footer className="footer">
-        © 2026 Crédito online seguro. Todos os direitos reservados.
+        © 2026 Braz. Todos os direitos reservados.
       </footer>
     </div>
   )

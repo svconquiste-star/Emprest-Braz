@@ -10,8 +10,8 @@ const merriweather = Merriweather({
 })
 
 export const metadata = {
-  title: 'Empréstimo Imediato | Braz Empréstimos',
-  description: 'Crédito rápido e humano para quem precisa resolver as contas agora.',
+  title: 'Braz | Fale com um Especialista',
+  description: 'Atendimento rápido e humano. Fale direto com nosso especialista pelo WhatsApp.',
 }
 
 export const viewport = {
