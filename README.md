@@ -1,13 +1,13 @@
 # Emprest-Nunes Landing Page
 
-Landing page para simulação de empréstimo Creditop, configurada para deploy em Coolify com Traefik.
+Landing page de atendimento via WhatsApp, configurada para deploy em Coolify com Traefik.
 
 ## Configuração
 
-- **Domínio**: `https://Emprest-Nunes.multinexo.com.br`
-- **Framework**: Next.js 14
+- **Framework**: Next.js 14 (App Router, JavaScript)
 - **Deployment**: Coolify + Traefik
-- **Subpath**: `/Emprest-Nunes` (gerenciado por Traefik stripprefix)
+- **Meta Pixel**: `2291211478038763` (Core Config compliance)
+- **WhatsApp**: `5531975021616`
 
 ## Instalação Local
 
@@ -25,30 +25,29 @@ npm run build
 npm start
 ```
 
-## Traefik Configuration
+## Core Config Compliance
 
-Os labels do Traefik estão configurados no Coolify para:
-- Remover o prefixo `/Emprest-Nunes` antes de rotear para a aplicação
-- Redirecionar HTTP para HTTPS
-- Usar Let's Encrypt para certificado SSL
-
-## Elementos Preservados
-
-- ✅ Link WhatsApp: `https://wa.me/5531995248167`
-- ✅ Meta Ads Pixel ID: `2006224949946315`
-- ✅ Todas as cidades atendidas
-- ✅ Design e layout original
+- `autoConfig: false` — correspondência avançada manual
+- Zero eventos custom — apenas PageView, ViewContent, Contact
+- Zero parâmetros custom no Pixel
+- `event_source_url` envia apenas domínio (sem path/query)
+- Nenhum termo financeiro sensível no copy ou tracking
 
 ## Estrutura
 
 ```
-/pages
-  /index.js          - Página principal
-  /_app.js           - App wrapper
-/styles
-  /home.module.css   - Estilos da página
-  /globals.css       - Estilos globais
-/public              - Arquivos estáticos
-next.config.js       - Configuração Next.js
-package.json         - Dependências
+app/
+  layout.js          - Layout raiz (Pixel, fontes, providers)
+  page.js            - Página principal (formulário + tracking)
+  providers.js       - Providers de contexto
+  globals.css        - Estilos globais
+lib/
+  tracking.js        - TrackingManager (Pixel + N8N)
+  phoneValidator.js  - Validação de telefone
+context/
+  CityContext.js     - Provider de cidades
+  WhatsAppContext.js  - Provider WhatsApp
+hooks/
+  useTracking.js     - Hook para TrackingManager
+components/          - Componentes legados (placeholders)
 ```

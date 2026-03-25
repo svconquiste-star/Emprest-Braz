@@ -20,8 +20,8 @@ const merriweather = Merriweather({
 const PIXEL_ID = '2291211478038763';
 
 export const metadata = {
-  title: 'Simulação de Empréstimo | Atendimento via WhatsApp',
-  description: 'Simulação segura e atendimento humano via WhatsApp.',
+  title: 'Fale com um Especialista | Atendimento via WhatsApp',
+  description: 'Atendimento rápido e humano via WhatsApp.',
 };
 
 export default function RootLayout({ children }) {

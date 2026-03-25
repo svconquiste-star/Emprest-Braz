@@ -14,7 +14,7 @@ export function WhatsAppProvider({ children }) {
     const n = nome ? nome.trim() : '[NOME]';
     const c = cidade ? cidade.trim() : '[CIDADE]';
     const t = telefone || '[TELEFONE]';
-    const message = `Olá! Sou ${n}. Quero fazer uma simulação de empréstimo. Moro em ${c} e meu telefone é ${t}`;
+    const message = `Olá! Sou ${n}. Quero falar com um especialista. Moro em ${c} e meu telefone é ${t}`;
     return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
   };
 

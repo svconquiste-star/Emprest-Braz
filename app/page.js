@@ -70,12 +70,12 @@ export default function Page() {
       <section className="card">
         <div className="badge">
           <i className="fa-solid fa-lock" style={{ color: 'var(--gold)' }}></i>
-          Simulação segura
+          Atendimento rápido e seguro
         </div>
         <h1 className="h1">Fale com um especialista agora no WhatsApp</h1>
-        <p className="subtitle">Preencha seus dados e receba uma simulação rápida, com atendimento humano e sigiloso.</p>
+        <p className="subtitle">Preencha seus dados e receba uma resposta rápida, com atendimento humano e sigiloso.</p>
 
-        <div className="form" role="form" aria-label="Formulário de simulação">
+        <div className="form" role="form" aria-label="Formulário de contato">
           <div className="form-group">
             <label className="label" htmlFor="nome">
               Nome *
@@ -155,7 +155,7 @@ export default function Page() {
             </button>
             <div className="trust">
               <i className="fa-solid fa-lock" style={{ color: 'var(--gold)', fontSize: '11px' }}></i>
-              Seus dados são protegidos e usados apenas para contato e simulação.
+              Seus dados são protegidos e usados apenas para contato e atendimento.
             </div>
           </div>
         </div>

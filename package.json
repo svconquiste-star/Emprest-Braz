@@ -1,7 +1,7 @@
 {
   "name": "emprest-nunes",
   "version": "2.0.0",
-  "description": "Landing page Emprest-Nunes - Simulação de Empréstimo",
+  "description": "Landing page Emprest-Nunes",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
